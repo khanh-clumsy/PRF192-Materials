@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+int intRandom(int min, int max){
+    return min + rand() % (max - min + 1);
+}
+int main(){
+    int total, x, y, count;
+    srand(time(NULL));
+    do{
+        printf("Total sought: ");
+        scanf("%d", &total);
+        getchar();
+        if (total > 20 || total < 2){
+            printf("Enter sought again (between 2 and 12): ");
+            scanf("%d", &total);
+            getchar();
+        }
+    }
+    while (total < 2 || total > 20);
+    count = 1;
+    do{
+        x = intRandom(1, 10);
+        y = intRandom(1, 10);
+        printf("Result of pick %d and %d: %d + %d = %d\n", count++, count+1, x, y, x + y);
+        count+=1;
+    }while ((x+y) != total);
+    printf("You got your total in %d throws!", count-1);
+}
